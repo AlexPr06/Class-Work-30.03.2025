@@ -190,7 +190,9 @@ public:
 		}
 	}
 
-	bool getWinner() {
+	
+
+	char getWinner() {
 		// Перевірка рядків та стовпців
 		for (int i = 0; i < 3; i++) {
 			if (field[i][0] == field[i][1] && field[i][1] == field[i][2]) return field[i][0]; // Рядок
@@ -201,7 +203,7 @@ public:
 		if (field[0][0] == field[1][1] && field[1][1] == field[2][2]) return field[0][0]; // Головна діагональ
 		if (field[0][2] == field[1][1] && field[1][1] == field[2][0]) return field[0][2]; // Побічна діагональ
 
-		// Перевірка нічиєї (немає вільних клітинок)
+		// Перевірка нічиєї (чи є ще вільні клітинки)
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				if (field[i][j] != 'X' && field[i][j] != 'O') {
@@ -212,6 +214,7 @@ public:
 
 		return 'D'; // Нічия
 	}
+
 
 	// Getters
 	char getFieldPosition(int i, int j)
@@ -256,6 +259,7 @@ public:
 
 		while (true)
 		{
+			INDENT
 			cout << "\033[032mUser move\033[0m" << endl;
 			INDENT
 			cout << "\033[033mEnter the position: \033[0m";
@@ -444,7 +448,11 @@ int main()
 			if (winner != '\0') {
 				if (winner == 'X') cout << "\033[032mUser wins!\033[0m" << endl;
 				else if (winner == 'O') cout << "\033[031mComputer wins!\033[0m" << endl;
-				else cout << "\033[033mIt's a draw!\033[0m" << endl;
+				else if (winner == 'D') {
+					cout << "\033[033mIt's a draw!\033[0m" << endl;
+					break;
+				}
+
 				break;
 			}
 
@@ -462,7 +470,10 @@ int main()
 			if (winner != '\0') {
 				if (winner == 'X') cout << "\033[032mUser wins!\033[0m" << endl;
 				else if (winner == 'O') cout << "\033[031mComputer wins!\033[0m" << endl;
-				else cout << "\033[033mIt's a draw!\033[0m" << endl;
+				else if (winner == 'D') {
+					cout << "\033[033mIt's a draw!\033[0m" << endl;
+					break;
+				}
 				break;
 			}
 		}

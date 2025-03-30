@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <vector>
 #include <ctime>
 
@@ -191,26 +191,26 @@ public:
 	}
 
 	bool getWinner() {
-		// Перевірка рядків та стовпців
+		// РџРµСЂРµРІС–СЂРєР° СЂСЏРґРєС–РІ С‚Р° СЃС‚РѕРІРїС†С–РІ
 		for (int i = 0; i < 3; i++) {
-			if (field[i][0] == field[i][1] && field[i][1] == field[i][2]) return field[i][0]; // Рядок
-			if (field[0][i] == field[1][i] && field[1][i] == field[2][i]) return field[0][i]; // Стовпець
+			if (field[i][0] == field[i][1] && field[i][1] == field[i][2]) return field[i][0]; // Р СЏРґРѕРє
+			if (field[0][i] == field[1][i] && field[1][i] == field[2][i]) return field[0][i]; // РЎС‚РѕРІРїРµС†СЊ
 		}
 
-		// Перевірка діагоналей
-		if (field[0][0] == field[1][1] && field[1][1] == field[2][2]) return field[0][0]; // Головна діагональ
-		if (field[0][2] == field[1][1] && field[1][1] == field[2][0]) return field[0][2]; // Побічна діагональ
+		// РџРµСЂРµРІС–СЂРєР° РґС–Р°РіРѕРЅР°Р»РµР№
+		if (field[0][0] == field[1][1] && field[1][1] == field[2][2]) return field[0][0]; // Р“РѕР»РѕРІРЅР° РґС–Р°РіРѕРЅР°Р»СЊ
+		if (field[0][2] == field[1][1] && field[1][1] == field[2][0]) return field[0][2]; // РџРѕР±С–С‡РЅР° РґС–Р°РіРѕРЅР°Р»СЊ
 
-		// Перевірка нічиєї (немає вільних клітинок)
+		// РџРµСЂРµРІС–СЂРєР° РЅС–С‡РёС”С— (РЅРµРјР°С” РІС–Р»СЊРЅРёС… РєР»С–С‚РёРЅРѕРє)
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				if (field[i][j] != 'X' && field[i][j] != 'O') {
-					return '\0'; // Гра триває
+					return '\0'; // Р“СЂР° С‚СЂРёРІР°С”
 				}
 			}
 		}
 
-		return 'D'; // Нічия
+		return 'D'; // РќС–С‡РёСЏ
 	}
 
 	// Getters
@@ -226,8 +226,6 @@ public:
 	{
 		field[i][j] = value;
 	}
-
-
 };
 
 

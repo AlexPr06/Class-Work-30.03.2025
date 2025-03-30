@@ -184,7 +184,15 @@ public:
 		{
 			for (int j = 0; j < field[i].size(); j++)
 			{
-				cout << field[i][j] << "  ";
+				if (field[i][j] == 'X') {
+					cout << "\033[32m" << field[i][j] << "\033[0m  "; // Зелене 'X'
+				}
+				else if (field[i][j] == 'O') {
+					cout << "\033[31m" << field[i][j] << "\033[0m  "; // Червоне 'O'
+				}
+				else {
+					cout << field[i][j] << "  "; // Без кольору
+				}
 			}
 			cout << endl;
 		}
@@ -334,7 +342,7 @@ public:
 };
 
 
-
+void printTicTacGameTitle();
 
 int main()
 {
@@ -412,12 +420,16 @@ int main()
 	srand(time(0));
 
 
+
+	printTicTacGameTitle();
+
 	TicTacToeField* myField = new TicTacToeField();
 	UserMove* userMove = new UserMove(*myField, 'X');
 	ComputerMove* computerMove = new ComputerMove(*myField, 'O');
-	myField->drawField();
-	INDENT
 
+
+	cout << "\t\033[034mRandomiser says: \033[0m";
+	
 	int randNum = rand() % 2;
 	bool userPlaysFirst;
 	if (randNum == 0)
@@ -431,7 +443,8 @@ int main()
 		cout << "\033[034mUser plays first\033[0m" << endl;
 	}
 	INDENT INDENT
-	
+
+	myField->drawField();
 
 	while (true)
 	{
@@ -483,4 +496,22 @@ int main()
 
 
 	return 0;
+}
+
+
+void printTicTacGameTitle() {
+	cout << R"(
+  _______ _        _______             _______                 
+ |__   __(_)      |__   __|           |__   __|                
+    | |   _  ___     | | __ _  ___       | | ___   ___  ___    
+    | |  | |/ _ \    | |/ _` |/ _ \      | |/ _ \ / _ \/ _ \   
+    | |  | |  __/    | | (_| |  __/      | | (_) |  __/  __/   
+    |_|  |_|\___|    |_|\__,_|\___|      |_|\___/ \___|\___|   
+                                                               
+    )" << endl;
+	INDENT
+	cout << "\t\t\033[032mGREEN COLOR\033[0m - USER" << endl;
+	INDENT
+		cout << "\t\t\033[031mRED COLOR\033[0m - COMPUTER" << endl;
+	INDENT
 }
